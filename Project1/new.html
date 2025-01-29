@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/styles.css">
-    <title>Hammerhead Hardware | Home</title>
+    <title>Hammerhead Hardware | Sell</title>
 </head>
 
 <body>
@@ -34,16 +34,47 @@
     </header>
     
     <main>
-        <h1>Hammerhead Hardware</h1>
-        <p>At Hammerhead Hardware, we specialize in providing high-quality hardware tools to our customers. We also offer buy-back programs so your old tools have somewhere to go, and you have more room for new tools. Reach out to our staff for any questions.</p>
-        
-        <button class="browse">Start Browsing our Tool Selection</button>
-    
-        <!-- Image Section -->
-        <div class="image-container">
-            <img src="./images/big-bundle-illustrations-for-carpenter-tools-theme-free-vector.jpg" alt="Various array of tools">
-            <img src="./images/200.gif" alt="Hammerhead shark swimming">
-        </div>
+
+        <h1>Sell to Us!</h1>
+        <p>Make some room for new tools and sell your old ones to Hammerhead Hardware. We accept tools of all conditions just fill out our form to see how much we can offer you.</p>
+
+        <form action="#" method="post">
+            
+            <!-- Condition Dropdown -->
+            <label for="condition">Condition</label>
+            <select id="condition" name="condition" required>
+                <option value="" disabled selected>Select condition</option>
+                <option value="new">New</option>
+                <option value="like_new">Like New</option>
+                <option value="used_good">Used - Good</option>
+                <option value="used_fair">Used - Fair</option>
+                <option value="damaged">Damaged</option>
+            </select>
+
+            <!-- Title Field -->
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="Cordless Drill, Hacksaw, Plyers, Etc." required>
+
+            <!-- Seller Field -->
+            <label for="seller">Seller</label>
+            <input type="text" id="seller" name="seller" placeholder="First Last" required>
+
+            <!-- Price Field -->
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" placeholder="Enter item price" step="0.01" min="0" required>
+
+            <!-- Details Field -->
+            <label for="details">Details</label>
+            <textarea id="details" name="details" rows="4" placeholder="Enter item details" required></textarea>
+
+            <!-- Image Upload Field -->
+            <label for="image">Upload Image</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit Listing</button>
+        </form>
+
     </main>
 
     <footer>

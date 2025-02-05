@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Students Array</title>
+</head>
+<body>
+    <h2>Students</h2>
+    <% if (students.length > 0) { %>
+        <div class="students-container">
+            <% students.forEach(student => { %>
+                <div class="student-card">
+                    <img src="<%= student.profile %>" alt="Profile Picture">
+                    <p><%= student.name %></p>
+                </div>
+            <% }); %>
+        </div>
+    <% } else { %>
+        <p class="no-students">There are no students to display</p>
+    <% } %>
+    
+</body>
+</html>

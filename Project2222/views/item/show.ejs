@@ -1,0 +1,22 @@
+<%- include('../partials/header.ejs')%>
+        
+        <div class="detail">
+            <img src="<%= item.image%>" alt="<%= item.title%>">
+            
+            <div class="detail-content">
+                <p class="title"><%= item.title%></p>
+                <p class="condition"><%= item.condition%></p>
+                <p class="price">$<%= item.price%></p>
+                <p class="seller"><%= item.seller%> is selling this item.</p>
+                <p class="offers">0 offers</p>
+                <p class="description"><%= item.details%></p>
+    
+                <!-- buttons inside the box -->
+                <div class="button-container">
+                    <button class="edit">Edit</button>
+                    <button class="delete">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <%- include('../partials/footer.ejs')%>

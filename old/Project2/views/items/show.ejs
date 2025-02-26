@@ -1,0 +1,24 @@
+<%- include('../partials/header.ejs')%>
+
+<main>
+    <div class="detail">
+        <img src="<%= item.image %>" alt="<%= item.title %>">
+        <div class="detail-content">
+            <p class="title"><%= item.title %></p>
+            <p class="condition"><%= item.condition %></p>
+            <p class="price">$<%= item.price.toFixed(2) %></p>
+            <p class="seller"><%= item.seller %> is selling this item.</p>
+            <p class="description"><%= item.details %></p>
+
+            <!-- Edit and Delete Buttons -->
+            <div class="button-container">
+                <a href="/items/<%= item.id %>/edit"><button class="edit">Edit</button></a>
+                <form action="/items/<%= item.id %>?_method=DELETE" method="post">
+                    <button type="submit" class="delete">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer.ejs')%>

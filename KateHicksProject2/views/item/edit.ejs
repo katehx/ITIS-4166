@@ -1,0 +1,43 @@
+<%- include('../partials/header.ejs')%>
+    <h1>Sell to Us!</h1>
+    <p>Make some room for new tools and sell your old ones to Hammerhead Hardware. We accept tools of all conditions
+        just fill out our form to see how much we can offer you.</p>
+
+        <form method="POST" action="/items/<%= item.id %>?_method=PUT" enctype="multipart/form-data">
+                
+            <!-- Condition Dropdown -->
+            <label for="condition">Condition</label>
+            <select id="condition" name="condition" required>
+                <option value="" disabled>Select condition</option>
+                <option value="new" <%= item.condition === "new" ? "selected" : "" %>>New</option>
+                <option value="like_new" <%= item.condition === "like_new" ? "selected" : "" %>>Like New</option>
+                <option value="used_good" <%= item.condition === "used_good" ? "selected" : "" %>>Used - Good</option>
+                <option value="used_fair" <%= item.condition === "used_fair" ? "selected" : "" %>>Used - Fair</option>
+                <option value="damaged" <%= item.condition === "damaged" ? "selected" : "" %>>Damaged</option>
+            </select>
+        
+            <!-- Title Field -->
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" value="<%= item.title %>" required>
+        
+            <!-- Seller Field -->
+            <label for="seller">Seller</label>
+            <input type="text" id="seller" name="seller" value="<%= item.seller %>" required>
+        
+            <!-- Price Field -->
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" value="<%= item.price %>" step="0.01" min="0" required>
+        
+            <!-- Details Field -->
+            <label for="details">Details</label>
+            <textarea id="details" name="details" rows="4" required><%= item.details %></textarea>
+        
+            <!-- Image Upload Field -->
+            <label for="image">Upload Image</label>
+            <input type="file" id="image" name="image" accept="image/*">
+        
+            <!-- Submit Button -->
+            <button type="submit">Submit Listing</button>
+        </form>
+        
+    <%- include('../partials/footer.ejs')%>

@@ -13,8 +13,10 @@
     
                 <!-- buttons inside the box -->
                 <div class="button-container">
-                    <button class="edit">Edit</button>
-                    <button class="delete">Delete</button>
+                    <form>
+                        <button class="edit" type="submit" formmethod="GET" formaction="/items/<%= item.id%>/edit">Edit</button>
+                        <button class="delete" type="submit" formmethod="POST" formaction="/items/<%= item.id%>?_method=DELETE">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>

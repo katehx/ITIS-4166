@@ -2,47 +2,47 @@ const { v4: uuidv4 } = require('uuid');
 
 const items = [
     {
-        id: 1,
+        id: uuidv4(),
         title: 'Ratcheting Wrench Set',
         seller: 'John',
         condition: 'New',
-        price: 30.00,
+        price: 60.00,
         details: 'A set of high-quality ratcheting wrenches for various mechanical needs.',
         image: '/images/95552_W3.jpg',
         active: true
     },
     {
-        id: 2,
+        id: uuidv4(),
         title: 'Standard Hammer',
         seller: 'Mike',
         condition: 'Used - Fair',
-        price: 2.00,
+        price: 4.00,
         details: 'A slightly rusty but still functional hammer.',
         image: '/images/s-l1200.jpg',
         active: true
     },
     {
-        id: 3,
+        id: uuidv4(),
         title: 'Heat Gun',
         seller: 'Sarah',
         condition: 'Damaged',
-        price: 2.00,
+        price: 12.00,
         details: 'Broken yellow heat gun, may be repairable or used for parts.',
         image: '/images/maxresdefault.jpg',
         active: true
     },
     {
-        id: 4,
+        id: uuidv4(),
         title: 'Tool Assortment',
         seller: 'Tom',
         condition: 'Used - Fair',
-        price: 15.00,
+        price: 35.00,
         details: 'An assortment of old tools in a box.',
         image: '/images/gallery-1453963896-img-8078.jpg',
         active: true
     },
     {
-        id: 5,
+        id: uuidv4(),
         title: 'Tabletop Bandsaw',
         seller: 'Anna',
         condition: 'Used - Good',
@@ -52,7 +52,7 @@ const items = [
         active: true
     },
     {
-        id: 6,
+        id: uuidv4(),
         title: 'Cordless Hand Drill',
         seller: 'Chris',
         condition: 'New',
@@ -65,10 +65,35 @@ const items = [
 
 exports.find = () => items;
 
-exports.findById = (id) => items.find(item => item.id === Number(id));
+exports.findById = (id) => items.find(item => item.id === id);
 
 exports.save = (item) => {
     item.id = uuidv4();
     item.active = true;
     items.push(item)
 };
+
+exports.updateById = (id, newItem) => {
+    let item = items.find(item => item.id === id);
+    if (item) {
+        item.title = newItem.title;
+        item.seller = newItem.seller;
+        item.condition = newItem.condition;
+        item.price = newItem.price;
+        item.details = newItem.details;
+        item.image = newItem.image; 
+        return true;
+    } else {
+        return false;
+    }
+};
+
+exports.deleteById = (id) => {
+    let index = items.findIndex(item => item.id === id);
+    if (index !== -1) {
+        items.splice(index, 1);
+        return true;
+    } else {
+        return false;
+    }
+}

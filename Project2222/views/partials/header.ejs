@@ -17,11 +17,13 @@
 
         <!-- search bar -->
         <div class="search-container">
-            <input type="text" placeholder="Search">
-            <button type="submit">
-                <img src="/images/magnifying-glass-solid.svg" alt="Search">
-            </button>
-        </div>
+            <form action="/items" method="GET">
+                <input type="text" name="search" placeholder="Search">
+                <button type="submit">
+                    <img src="/images/magnifying-glass-solid.svg" alt="Search">
+                </button>
+            </form>
+        </div>        
 
         <!-- site navigation menu -->
         <nav>

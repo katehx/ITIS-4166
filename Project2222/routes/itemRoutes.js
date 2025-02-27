@@ -1,7 +1,10 @@
 const express = require('express');
+const router = express.Router();
 const controller = require('../controllers/itemController');
 
-const router = express.Router();
+router.get('/items', controller.index);
+
+module.exports = router;
 
 //GET /items: send all items to the user
 router.get('/', controller.index);

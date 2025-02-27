@@ -1,42 +1,42 @@
 <%- include('../partials/header.ejs')%>
-        <h1>Sell to Us!</h1>
-        <p>Make some room for new tools and sell your old ones to Hammerhead Hardware. We accept tools of all conditions just fill out our form to see how much we can offer you.</p>
+    <h1>Sell to Us!</h1>
+    <p>Make some room for new tools and sell your old ones to Hammerhead Hardware. We accept tools of all conditions
+        just fill out our form to see how much we can offer you.</p>
 
-        <form action="/items" method="POST">
-            
-            <!-- Condition Dropdown -->
-            <label for="condition">Condition</label>
-            <select id="condition" name="condition" required>
-                <option value="" disabled selected>Select condition</option>
-                <option value="new">New</option>
-                <option value="like_new">Like New</option>
-                <option value="used_good">Used - Good</option>
-                <option value="used_fair">Used - Fair</option>
-                <option value="damaged">Damaged</option>
-            </select>
+    <form action="/items" method="POST" enctype="multipart/form-data">
 
-            <!-- Title Field -->
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title" placeholder="Cordless Drill, Hacksaw, Plyers, Etc." required>
+        <!-- Condition Dropdown -->
+        <label for="condition">Condition</label>
+        <select id="condition" name="condition" required>
+            <option value="" disabled selected>Select condition</option>
+            <option value="new">New</option>
+            <option value="like_new">Like New</option>
+            <option value="used_good">Used - Good</option>
+            <option value="used_fair">Used - Fair</option>
+            <option value="damaged">Damaged</option>
+        </select>
 
-            <!-- Seller Field -->
-            <label for="seller">Seller</label>
-            <input type="text" id="seller" name="seller" placeholder="First Last" required>
+        <!-- Title Field -->
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" placeholder="Cordless Drill, Hacksaw, Plyers, Etc." required>
 
-            <!-- Price Field -->
-            <label for="price">Price</label>
-            <input type="number" id="price" name="price" placeholder="Enter item price" step="0.01" min="0" required>
+        <!-- Seller Field -->
+        <label for="seller">Seller</label>
+        <input type="text" id="seller" name="seller" placeholder="First Last" required>
 
-            <!-- Details Field -->
-            <label for="details">Details</label>
-            <textarea id="details" name="details" rows="4" placeholder="Enter item details" required></textarea>
+        <!-- Price Field -->
+        <label for="price">Price</label>
+        <input type="number" id="price" name="price" placeholder="Enter item price" step="0.01" min="0" required>
 
-            <!-- Image Upload Field -->
-            <label for="image">Upload Image</label>
-            <input type="file" id="image" name="image" accept="image/*" required>
+        <!-- Details Field -->
+        <label for="details">Details</label>
+        <textarea id="details" name="details" rows="4" placeholder="Enter item details" required></textarea>
 
-            <!-- Submit Button -->
-            <button type="submit">Submit Listing</button>
-        </form>
+        <!-- Image Upload Field -->
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
 
-        <%- include('../partials/footer.ejs')%>
+        <!-- Submit Button -->
+        <button type="submit">Submit Listing</button>
+    </form>
+    <%- include('../partials/footer.ejs')%>

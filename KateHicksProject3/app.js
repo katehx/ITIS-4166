@@ -1,7 +1,8 @@
 //require modules
 const express = require('express');
 const morgan = require('morgan');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const mongoose = require('mongoose');
 const itemRoutes = require('./routes/itemRoutes');
 
 //create app
@@ -11,6 +12,17 @@ const app = express();
 let port = 3000;
 let host = 'localhost';
 app.set('view engine', 'ejs');
+const mongoUri = 'mongodb+srv://admin:admin@cluster0.g8y1w.mongodb.net/project3?retryWrites=true&w=majority&appName=Cluster0';
+
+//connect to MongoDb
+mongoose.connect(mongoUri)
+    .then(() => {
+        //start the server
+        app.listen(port, host, () => {
+            console.log('Server is running on port:', port);
+        });
+    })
+    .catch(err => console.log(err.message));
 
 //mount middleware
 app.use(express.static('public'));
@@ -42,7 +54,3 @@ app.use((err, req, res, next) => {
     res.render('error', {error: err})
 });
 
-//start the server
-app.listen(port, host, () => {
-    console.log('Server is running on port:', port);
-});

@@ -9,11 +9,11 @@
             <label for="condition">Condition</label>
             <select id="condition" name="condition" required>
                 <option value="" disabled>Select condition</option>
-                <option value="new" <%= item.condition === "New" ? "selected" : "" %>>New</option>
-                <option value="like_new" <%= item.condition === "Like New" ? "selected" : "" %>>Like New</option>
-                <option value="used_good" <%= item.condition === "Used - Good" ? "selected" : "" %>>Used - Good</option>
-                <option value="used_fair" <%= item.condition === "Used - Fair" ? "selected" : "" %>>Used - Fair</option>
-                <option value="damaged" <%= item.condition === "Damaged" ? "selected" : "" %>>Damaged</option>
+                <option value="New" <%= item.condition === "New" ? "selected" : "" %>>New</option>
+                <option value="Like New" <%= item.condition === "Like New" ? "selected" : "" %>>Like New</option>
+                <option value="Used - Good" <%= item.condition === "Used - Good" ? "selected" : "" %>>Used - Good</option>
+                <option value="Used - Fair" <%= item.condition === "Used - Fair" ? "selected" : "" %>>Used - Fair</option>
+                <option value="Damaged" <%= item.condition === "Damaged" ? "selected" : "" %>>Damaged</option>
             </select>
         
             <!-- Title Field -->
@@ -26,11 +26,11 @@
         
             <!-- Price Field -->
             <label for="price">Price</label>
-            <input type="number" id="price" name="price" value="<%= item.price %>" step="0.01" min="0" required>
+            <input type="number" id="price" name="price" value="<%= item.price %>" step="0.01" min="0.01" required>
         
             <!-- Details Field -->
             <label for="details">Details</label>
-            <textarea id="details" name="details" rows="4" required><%= item.details %></textarea>
+            <textarea id="details" name="details" rows="4" required minlength="10"><%= item.details %></textarea>
         
             <!-- Image Upload Field -->
             <label for="image">Upload Image</label>

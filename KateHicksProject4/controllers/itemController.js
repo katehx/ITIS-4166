@@ -1,5 +1,5 @@
 const model = require('../models/item');
-const { upload } = require('../middleware/fileUpload');
+const { upload } = require('../middlewares/fileUpload');
 
 exports.index = (req, res, next) => {
     let query = {};

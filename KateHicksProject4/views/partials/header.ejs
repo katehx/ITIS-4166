@@ -29,10 +29,32 @@
         <nav>
             <a href="/items">Browse</a>
             <a href="/items/new">Sell</a>
-            <a href="#">Sign Up</a>
-            <a href="#">Login</a>
+            <%if(!user) {%>
+                <a href='/users/new'>Sign Up</a>
+                <a href='/users/login'>Login</a>
+            <%} else {%>
+                <a href='/users/profile'>Profile</a>
+                <a href='/users/logout'>Logout</a>
+            <%}%>
         </nav>
 
     </header>
+
+    <% if(errorMessages.length > 0) {%>
+        <% errorMessages.forEach(message=>{%>
+            <div class='error'>
+                <%=message%>
+            </div>
+            <%});%>
+                <%}%>
+    
+                    <% if(successMessages.length > 0) {%>
+    
+                        <% successMessages.forEach(message=>{%>
+                            <div class='success'>
+                                <%=message%>
+                            </div>
+                            <%});%>
+                                <%}%>
 
     <main>

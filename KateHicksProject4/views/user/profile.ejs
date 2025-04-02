@@ -1,0 +1,45 @@
+<%- include('../partials/header.ejs')%>
+
+<h1>Welcome, <%= user.firstName + " " + user.lastName %>!</h1>
+
+<section class="listing-section">
+    <h2>My Listings</h2>
+    <table class="listing-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Placeholder entries for now -->
+            <tr>
+                <td><a href="#">Teenage Mutant Ninja Turtles #1</a></td>
+                <td>active</td>
+                <td>
+                    <button class="edit">Edit</button>
+                    <button class="delete">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="#">Fantastic Four #51</a></td>
+                <td>active</td>
+                <td>
+                    <button class="edit">Edit</button>
+                    <button class="delete">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="#">Sandman #8</a></td>
+                <td>active</td>
+                <td>
+                    <button class="edit">Edit</button>
+                    <button class="delete">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<%- include('../partials/footer.ejs')%>

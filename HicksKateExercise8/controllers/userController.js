@@ -1,34 +1,34 @@
 const model = require('../models/user');
+const Story = require('../models/story');
 
-exports.new = (req, res)=>{
-    res.render('./user/new');
+exports.new = (req, res) => {
+    return res.render('./user/new');    
 };
 
-exports.create = (req, res, next)=>{
+exports.create = (req, res, next) => {
     let user = new model(req.body);
     user.save()
-    .then(user=> res.redirect('/users/login'))
-    .catch(err=>{
-        if(err.name === 'ValidationError' ) {
-            req.flash('error', err.message);  
-            return res.redirect('/users/new');
-        }
+        .then(user => res.redirect('/users/login'))
+        .catch(err => {
+            if (err.name === 'ValidationError') {
+                req.flash('error', err.message);
+                return res.redirect('/users/new');
+            }
 
-        if(err.code === 11000) {
-            req.flash('error', 'Email has been used');  
-            return res.redirect('/users/new');
-        }
-        
-        next(err);
-    }); 
+            if (err.code === 11000) {
+                req.flash('error', 'Email has been used');
+                return res.redirect('/users/new');
+            }
+    
+            next(err);
+        });
 };
 
 exports.getUserLogin = (req, res, next) => {
-    res.render('./user/login');
+    return res.render('./user/login');
 }
 
 exports.login = (req, res, next)=>{
-
     let email = req.body.email;
     let password = req.body.password;
     model.findOne({ email: email })
@@ -52,12 +52,16 @@ exports.login = (req, res, next)=>{
         }     
     })
     .catch(err => next(err));
+    
 };
 
 exports.profile = (req, res, next)=>{
     let id = req.session.user;
-    model.findById(id) 
-    .then(user=>res.render('./user/profile', {user}))
+    Promise.all([model.findById(id), Story.find({author: id})]) 
+        .then(results =>{
+            const [user, stories] = results;
+            res.render('./user/profile', { user, stories })
+        })
     .catch(err=>next(err));
 };
 

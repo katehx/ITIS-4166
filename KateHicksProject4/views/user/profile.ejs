@@ -13,32 +13,25 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Placeholder entries for now -->
-            <tr>
-                <td><a href="#">Teenage Mutant Ninja Turtles #1</a></td>
-                <td>active</td>
-                <td>
-                    <button class="edit">Edit</button>
-                    <button class="delete">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td><a href="#">Fantastic Four #51</a></td>
-                <td>active</td>
-                <td>
-                    <button class="edit">Edit</button>
-                    <button class="delete">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td><a href="#">Sandman #8</a></td>
-                <td>active</td>
-                <td>
-                    <button class="edit">Edit</button>
-                    <button class="delete">Delete</button>
-                </td>
-            </tr>
-        </tbody>
+            <% if (items.length > 0) { %>
+                <% items.forEach(item => { %>
+                    <tr>
+                        <td><a href="/items/<%= item._id %>"><%= item.title %></a></td>
+                        <td><%= item.active ? "active" : "inactive" %></td>
+                        <td>
+                            <form>
+                                <button class="edit" type="submit" formmethod="GET" formaction="/items/<%= item._id %>/edit">Edit</button>
+                                <button class="delete" type="submit" formmethod="POST" formaction="/items/<%= item._id %>?_method=DELETE">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3">You haven't listed any items yet.</td>
+                </tr>
+            <% } %>
+        </tbody>        
     </table>
 </section>
 

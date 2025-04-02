@@ -33,7 +33,8 @@ exports.create = (req, res, next) => {
         try {
             let item = new model({
                 ...req.body,
-                image: req.file ? '/images/' + req.file.filename : undefined
+                image: req.file ? '/images/' + req.file.filename : undefined,
+                seller: req.session.user
             }); //create a new item document
 
             item.save() //insert document into database
@@ -52,13 +53,7 @@ exports.create = (req, res, next) => {
 
 exports.show = (req, res, next) => {
     let id = req.params.id;
-    //an objectId is a 24-bit hex string
-    if (!id.match(/^[0-9a-fA-f]{24}$/)) {
-        let err = new Error('Invalid item id');
-        err.status = 400;
-        return next(err);
-    }
-    model.findById(id)
+    model.findById(id).populate('seller', 'firstName lastName')
     .then(item => {
         if (item) {
             return res.render('./item/show', {item});

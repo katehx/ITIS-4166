@@ -69,13 +69,16 @@ exports.profile = (req, res, next) => {
         return res.redirect('/users/login');
     }
 
-    User.findById(req.session.user)
-        .then(user => {
+    const id = req.session.user;
+
+    Promise.all([User.findById(req.session.user), Item.find({seller : id})])
+        .then(results => {
+            const [user, items] = results;
             if (!user) {
                 req.flash('error', 'User not found');
                 return res.redirect('/users/login');
             }
-            res.render('user/profile', { user });
+            res.render('user/profile', { user, items });
         })
         .catch(err => next(err));
 };

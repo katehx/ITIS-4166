@@ -7,8 +7,8 @@ const itemSchema = new Schema({
         required: [true, 'Title is required']
     },
     seller: {
-        type: String,
-        required: [true, 'Seller is required']
+        type: Schema.Types.ObjectId, ref: 'User'
+        //required: [true, 'Seller is required']
     },
     condition: {
         type: String,

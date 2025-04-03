@@ -41,7 +41,10 @@ exports.create = (req, res, next) => {
                 .then(item => res.redirect('/items'))
                 .catch(err => {
                     if (err.name === 'ValidationError') {
-                        err.status = 400;
+                        req.flash('error', err.message);
+                        req.session.save(() => {
+                            res.redirect('/users/new');
+                        });
                     }
                     next(err);
                 });
@@ -70,12 +73,6 @@ exports.show = (req, res, next) => {
 exports.edit = (req, res, next) => {
     let id = req.params.id;
 
-    if (!id.match(/^[0-9a-fA-f]{24}$/)) {
-        let err = new Error('Invalid item id');
-        err.status = 400;
-        return next(err);
-    }
-    
     model.findById(id)
     .then(item => {
         if (item) {
@@ -97,12 +94,6 @@ exports.update = (req, res, next) => {
         }
 
         const id = req.params.id;
-
-        if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-            const err = new Error('Invalid item id');
-            err.status = 400;
-            return next(err);
-        }
 
         model.findById(id)
             .then(existingItem => {
@@ -127,7 +118,10 @@ exports.update = (req, res, next) => {
             })
             .catch(err => {
                 if (err.name === 'ValidationError') {
-                    err.status = 400;
+                    req.flash('error', err.message);
+                    req.session.save(() => {
+                        res.redirect('/users/new');
+                    });
                 }
                 next(err);
             });
@@ -136,12 +130,6 @@ exports.update = (req, res, next) => {
     
 exports.delete = (req, res, next) => {
     let id = req.params.id;
-
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-            const err = new Error('Invalid item id');
-            err.status = 400;
-            return next(err);
-        }
 
     model.findByIdAndDelete(id, { userFindAndModify: false })
         .then(item => {

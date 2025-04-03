@@ -34,7 +34,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(morgan('tiny'));
 app.use(methodOverride('_method'));
 
-//sessions
+//session
 app.use(
     session({
         secret: "lalalalala",

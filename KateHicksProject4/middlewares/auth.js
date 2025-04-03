@@ -30,7 +30,7 @@ exports.isOwner = (req, res, next) => {
     Item.findById(id)
         .then(item => {
             if (item) {
-                if (item.author == req.session.user) {
+                if (item.seller == req.session.user) {
                     return next();
                 } else {
                     let err = new Error('Unauthorized to access the resource');

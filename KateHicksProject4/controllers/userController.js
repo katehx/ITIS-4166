@@ -15,7 +15,7 @@ exports.create = (req, res, next) => {
             if (err.name === 'ValidationError') {
                 req.flash('error', err.message);
                 req.session.save(() => {
-                res.redirect('/users/new');
+                    res.redirect('/users/new');
                 });
             }
 

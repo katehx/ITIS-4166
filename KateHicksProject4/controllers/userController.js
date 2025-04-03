@@ -10,23 +10,28 @@ exports.new = (req, res) => {
 exports.create = (req, res, next) => {
     let user = new User(req.body);
     user.save()
-        .then(() => res.redirect('/users/login'))
+        .then(() => {
+            req.flash('success', 'Account created successfully. Please log in.');
+            return req.session.save(() => {
+                res.redirect('/users/login');
+            });
+        })
         .catch(err => {
             if (err.name === 'ValidationError') {
                 req.flash('error', err.message);
-                req.session.save(() => {
+                return req.session.save(() => {
                     res.redirect('/users/new');
                 });
             }
 
-            if (err.code === 11000) {
+            if (err.code === 11000 || (err.cause && err.cause.code === 11000)) {
                 req.flash('error', 'Email has been used');
-                req.session.save(() => {
-                res.redirect('/users/new');
+                return req.session.save(() => {
+                    res.redirect('/users/new');
                 });
             }
-
-            next(err);
+           
+            return next(err);
         });
 };
 
@@ -46,9 +51,11 @@ exports.authenticate = (req, res, next) => {
                 user.comparePassword(password)
                     .then(result => {
                         if (result) {
-                            req.session.user = user._id; // save user id to session
-                            req.flash('success', 'You have successfully logged in');
-                            res.redirect('/users/profile');
+                            req.session.user = user._id; // set user
+                            req.session.save(() => {
+                                req.flash('success', 'You have successfully logged in');
+                                res.redirect('/users/profile');
+                            });
                         } else {
                             req.flash('error', 'Wrong password');
                             res.redirect('/users/login');
@@ -87,6 +94,6 @@ exports.profile = (req, res, next) => {
 exports.logout = (req, res, next) => {
     req.session.destroy(err => {
         if (err) return next(err);
-        res.redirect('/users/login');
+        res.redirect('/');
     });
 };

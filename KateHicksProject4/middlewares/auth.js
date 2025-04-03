@@ -2,6 +2,8 @@ const Item = require('../models/item')
 
 //check if user is a guest
 exports.isGuest = (req, res, next) => {
+    // console.log('SESSION STATE IS GUEST:', req.session);
+    // console.log('COOKIES IS GUEST:', req.headers.cookie);
     if (!req.session.user) {
         return next();
     } else {
@@ -14,6 +16,8 @@ exports.isGuest = (req, res, next) => {
 
 //check if user is authenticated
 exports.isLoggedIn = (req, res, next) => {
+    //     console.log('SESSION STATE IS LOGGED IN:', req.session);
+    // console.log('COOKIES IS LOGGED IN:', req.headers.cookie);
     if (req.session.user) {
         return next();
     } else {

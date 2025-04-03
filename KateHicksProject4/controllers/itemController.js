@@ -114,7 +114,10 @@ exports.update = (req, res, next) => {
                 return existingItem.save();
             })
             .then(() => {
-                res.redirect('/items/' + id);
+                req.flash('success', 'Item updated successfully');
+                req.session.save(() => {
+                    res.redirect('/items/' + id);
+                });
             })
             .catch(err => {
                 if (err.name === 'ValidationError') {
@@ -134,7 +137,10 @@ exports.delete = (req, res, next) => {
     model.findByIdAndDelete(id, { userFindAndModify: false })
         .then(item => {
             if (item) {
-                res.redirect('/items');
+                req.flash('success', 'Item deleted successfully');
+                req.session.save(() => {
+                    res.redirect('/items');
+                });
             } else {
                 let err = new Error('Cannot find an item with id ' + id);
                 err.status = 404;

@@ -1,0 +1,31 @@
+<%- include('../partials/header.ejs')%>
+
+    <h1>Browse</h1>
+    <p>Take a look at what hardware and equipment we have to offer. The condition of the tool, price, and number of offers can be found under each item. Click an item to get a more detailed look at the item.</p>
+
+    <p>Select an item to view.</p>
+
+    <div class="browse-container">
+
+        <% if (items.length) { %>
+            <% items.forEach(item=> { %>
+                <a href="/items/<%= item.id %>" class="item">
+                    <img src="<%= item.image %>" alt="<%= item.title %>">
+                    <p class="title">
+                        <%= item.title %>
+                    </p>
+                    <p class="condition">
+                        <%= item.condition %>
+                    </p>
+                    <p class="price">$<%= item.price%>
+                    </p>
+                    <p class="offers">0 offers</p>
+                </a>
+                <% }); %>
+                    <% } else { %>
+                        <p>There are no items for sale.</p>
+                        <% } %>
+
+    </div>
+
+    <%- include('../partials/footer.ejs')%>

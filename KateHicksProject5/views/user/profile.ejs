@@ -1,0 +1,38 @@
+<%- include('../partials/header.ejs')%>
+
+<h1>Welcome, <%= user.firstName + " " + user.lastName %>!</h1>
+
+<section class="listing-section">
+    <h2>My Listings</h2>
+    <table class="listing-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (items.length > 0) { %>
+                <% items.forEach(item => { %>
+                    <tr>
+                        <td><a href="/items/<%= item._id %>"><%= item.title %></a></td>
+                        <td><%= item.active ? "active" : "inactive" %></td>
+                        <td>
+                            <form>
+                                <button class="edit" type="submit" formmethod="GET" formaction="/items/<%= item._id %>/edit">Edit</button>
+                                <button class="delete" type="submit" formmethod="POST" formaction="/items/<%= item._id %>?_method=DELETE">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3">You haven't listed any items yet.</td>
+                </tr>
+            <% } %>
+        </tbody>        
+    </table>
+</section>
+
+<%- include('../partials/footer.ejs')%>

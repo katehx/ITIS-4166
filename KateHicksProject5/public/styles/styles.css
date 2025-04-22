@@ -1,0 +1,397 @@
+:root {
+    --coral: #FF6F61;
+    --yellow: #FFB74D;
+    --lightcyan: #4DB6AC;
+    --medcyan: #009688;
+    --darkcyan: #00796B;
+    --black: #141414;
+    --white: #ffffff;
+}
+
+@font-face {
+    font-family: 'LemonMilk';
+    src: url('../fonts/LEMONMILK-Medium.otf') format('opentype');
+}
+
+* {
+    margin: 0;
+}
+
+main {
+    padding: 2% 10% 8vh 10%;
+    background-color: var(--white);
+}
+
+h1 {
+    font-family: LemonMilk;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1vh;
+    color: var(--darkcyan);
+}
+
+p, textarea {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+    background-color: var(--medcyan);
+    border-bottom: 5px solid var(--yellow);
+}
+
+header a img {
+    max-height: 10vh;
+    width: auto;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    font-family: LemonMilk, Arial, Helvetica, sans-serif;
+    color: var(--white);
+    font-size: 18px;
+}
+
+nav a:hover {
+    color: var(--yellow);
+}
+
+/* header search bar */
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin-right: 3vh;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.search-container input {
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 5px;
+    font-size: 14px;
+    width: 40vh;
+}
+
+.search-container button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.search-container button img {
+    width: 2.5vh;
+}
+
+footer {
+    background-color: var(--yellow);
+    padding: 10px;
+    border-top: 5px solid var(--medcyan);
+    font-family: Lemonmilk, Arial, Helvetica, sans-serif;
+    color: var(--white);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer > nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-right: 3.5vh;
+}
+
+footer > nav a {
+    display: inline-block;
+}
+
+footer > nav img {
+    width: auto;
+    height: 3.25vh;
+    filter: invert(1); /* Makes SVG icons white */
+}
+
+/* browse page styling */
+.browse-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 6vh;
+}
+
+.item {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    max-width: 200px;
+}
+
+.item img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.item p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.price {
+    font-weight: bold;
+    color: blue;
+}
+
+.offers {
+    color: gray;
+    font-size: 12px;
+}
+
+/* submission form */
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--darkcyan);
+}
+
+form input, form select, form textarea {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid var(--lightcyan);
+    border-radius: 5px;
+}
+
+form button {
+    background-color: var(--medcyan);
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: LemonMilk, Arial, Helvetica, sans-serif;
+}
+
+/* item detail */
+.detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.detail img {
+    width: 250px; /* Adjust size */
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.detail .title {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--darkcyan);
+}
+
+.detail .price {
+    font-size: 20px;
+    font-weight: bold;
+    color: blue;
+}
+
+.detail .offers {
+    font-size: 14px;
+    color: gray;
+}
+
+.detail .description {
+    font-size: 14px;
+    color: var(--black);
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit {
+    background-color: var(--medcyan);
+}
+
+.edit:hover {
+    background-color: var(--darkcyan);
+}
+
+.delete {
+    background-color: var(--coral);
+}
+
+.delete:hover {
+    background-color: red;
+}
+
+button {
+    background-color: var(--medcyan);
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: LemonMilk, Arial, Helvetica, sans-serif;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap; 
+    margin-top: 20px;
+}
+
+.image-container img {
+    max-width: 300px; 
+    height: auto;
+    border-radius: 5px;
+}
+
+/* flash message styles */
+.success {
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgba(36, 177, 17, 0.7);
+    color: #fff;
+    width: 70%;
+    margin: 1vh auto 1rem auto;
+    text-align: center;
+    padding: 0.5rem 0;
+}
+  
+.error {
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgba(224, 12, 12, 0.7);
+    color: #fff;
+    width: 70%;
+    margin: 1vh auto 1rem auto;
+    text-align: center;
+    padding: 0.5rem 0;
+}
+
+/* listing table within profile view */
+.listing-section {
+    background-color: var(--yellow);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    font-family: LemonMilk;
+    margin-bottom: 10px;
+    color: var(--white);
+}
+
+.listing-table {
+    width: 100%;
+    background: var(--white);
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.listing-table th, .listing-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.listing-table th {
+    background-color: var(--white);
+    color: var(--black);
+    font-weight: bold;
+}
+
+.listing-table td a {
+    color: purple;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.listing-table td button {
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    font-family: LemonMilk;
+}
+
+.listing-table .edit {
+    background-color: var(--medcyan);
+    color: white;
+    border: none;
+}
+
+.listing-table .delete {
+    background-color: var(--coral);
+    color: white;
+    border: none;
+}

@@ -1,0 +1,137 @@
+<!-- <%- include('../partials/header.ejs')%>
+
+<h1>Welcome, <%= user.firstName + " " + user.lastName %>!</h1>
+
+<section class="listing-section">
+    <h2>My Listings</h2>
+    <table class="listing-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (items.length > 0) { %>
+                <% items.forEach(item => { %>
+                    <tr>
+                        <td><a href="/items/<%= item._id %>"><%= item.title %></a></td>
+                        <td><%= item.active ? "active" : "inactive" %></td>
+                        <td>
+                            <form>
+                                <button class="edit" type="submit" formmethod="GET" formaction="/items/<%= item._id %>/edit">Edit</button>
+                                <button class="delete" type="submit" formmethod="POST" formaction="/items/<%= item._id %>?_method=DELETE">Delete</button>
+                                <button class="view-offers" type="submit" formmethod="GET" formaction="/items/<%= item._id %>/offers" <%= item.totalOffers === 0 ? "disabled" : "" %>>View Offers</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3">You haven't listed any items yet.</td>
+                </tr>
+            <% } %>
+        </tbody>        
+    </table>
+</section>
+
+<section class="offer-section">
+    <h2>My Offers</h2>
+    <table class="offer-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Status</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (offers.length > 0) { %>
+                <% offers.forEach(offer => { %>
+                    <tr>
+                        <td><a href="/items/<%= offer.item._id %>"><%= offer.item.title %></a></td>
+                        <td><%= offer.status %></td>
+                        <td>$<%= offer.amount.toFixed(2) %></td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3">You haven't made any offers yet.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</section>
+
+<%- include('../partials/footer.ejs')%> -->
+
+<%- include('../partials/header.ejs')%>
+
+<h1>Welcome, <%= user.firstName + " " + user.lastName %>!</h1>
+
+<section class="listing-section">
+    <h2>My Listings</h2>
+    <table class="listing-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (items.length > 0) { %>
+                <% items.forEach(item => { %>
+                    <tr>
+                        <td><a href="/items/<%= item._id %>"><%= item.title %></a></td>
+                        <td><%= item.active ? "active" : "inactive" %></td>
+                        <td>
+                            <form class="action-form">
+                                <div class="action-buttons">
+                                    <button class="edit" type="submit" formmethod="GET" formaction="/items/<%= item._id %>/edit">Edit</button>
+                                    <button class="delete" type="submit" formmethod="POST" formaction="/items/<%= item._id %>?_method=DELETE">Delete</button>
+                                    <button class="view-offers" type="submit" formmethod="GET" formaction="/items/<%= item._id %>/offers" <%= item.totalOffers === 0 ? "disabled" : "" %>>View Offers</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3">You haven't listed any items yet.</td>
+                </tr>
+            <% } %>
+        </tbody>        
+    </table>
+</section>
+
+<section class="offer-section">
+    <h2>My Offers</h2>
+    <table class="offer-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Status</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (offers.length > 0) { %>
+                <% offers.forEach(offer => { %>
+                    <tr>
+                        <td><a href="/items/<%= offer.item._id %>"><%= offer.item.title %></a></td>
+                        <td><%= offer.status %></td>
+                        <td>$<%= offer.amount.toFixed(2) %></td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3">You haven't made any offers yet.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</section>
+
+<%- include('../partials/footer.ejs')%>

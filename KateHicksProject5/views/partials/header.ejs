@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/styles.css">
+    <title>Hammerhead Hardware</title>
+</head>
+
+<body>
+
+    <header>
+
+        <!-- brand Logo -->
+        <a href="/"><img src="/images/HHWhite.png" alt="Hammerhead Hardware Logo"></a>
+
+        <!-- search bar -->
+        <div class="search-container">
+            <form action="/items" method="GET">
+                <input type="text" name="search" placeholder="Search">
+                <button type="submit">
+                    <img src="/images/magnifying-glass-solid.svg" alt="Search">
+                </button>
+            </form>
+        </div>        
+
+        <!-- site navigation menu -->
+        <nav>
+            <a href="/items">Browse</a>
+            <a href="/items/new">Sell</a>
+            <%if(!user) {%>
+                <a href='/users/new'>Sign Up</a>
+                <a href='/users/login'>Login</a>
+            <%} else {%>
+                <a href='/users/profile'>My Account</a>
+                <a href='/users/logout'>Logout</a>
+            <%}%>
+        </nav>
+
+    </header>
+
+    <% if(errorMessages.length > 0) {%>
+        <% errorMessages.forEach(message=>{%>
+            <div class='error'>
+                <%=message%>
+            </div>
+            <%});%>
+                <%}%>
+    
+                    <% if(successMessages.length > 0) {%>
+    
+                        <% successMessages.forEach(message=>{%>
+                            <div class='success'>
+                                <%=message%>
+                            </div>
+                            <%});%>
+                                <%}%>
+
+    <main>

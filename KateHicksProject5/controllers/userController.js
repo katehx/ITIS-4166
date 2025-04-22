@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Item = require('../models/item');
+const Offer = require('../models/offer');
 
 // show sign-up form
 exports.new = (req, res) => {
@@ -78,14 +79,13 @@ exports.profile = (req, res, next) => {
 
     const id = req.session.user;
 
-    Promise.all([User.findById(req.session.user), Item.find({seller : id})])
-        .then(results => {
-            const [user, items] = results;
+    Promise.all([User.findById(req.session.user), Item.find({seller : id}), Offer.find({ user: id }).populate('item', 'title')])
+        .then(([user, items, offers]) => {
             if (!user) {
                 req.flash('error', 'User not found');
                 return res.redirect('/users/login');
             }
-            res.render('user/profile', { user, items });
+            res.render('user/profile', { user, items, offers });
         })
         .catch(err => next(err));
 };

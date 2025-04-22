@@ -8,9 +8,24 @@
                 <p class="condition"><%= item.condition%></p>
                 <p class="price">$<%= item.price%></p>
                 <p class="seller"><%= item.seller.firstName + ' ' + item.seller.lastName%> is selling this item.</p>
-                <p class="offers">0 offers</p>
+                <p class="offers"><%= item.totalOffers || 0 %> offer<%= item.totalOffers === 1 ? '' : 's' %></p>
                 <p class="description"><%= item.details%></p>
+
+                <% if (item.active && item.totalOffers > 0) { %>
+                    <p class="highest-offer">Current Highest Offer: $<%= item.highestOffer.toFixed(2) %></p>
+                <% } else if (!item.active) { %>
+                    <p class="inactive-message">Unfortunately, this item is no longer available.</p>
+                <% } %>                
     
+                <% if (item.active && user && !item.seller._id.equals(user)) { %>
+                    <form class="offer-form" action="/items/<%= item._id %>/offers" method="POST">
+                        <label for="amount">Make an Offer:</label>
+                        <input type="number" name="amount" step="5" min="0.01" required>
+                        <button type="submit">Make an Offer</button>
+                    </form>
+                <% } %>
+                
+
             </div>
         </div>
 

@@ -16,7 +16,7 @@ const app = express();
 let port = 3000;
 let host = 'localhost';
 app.set('view engine', 'ejs');
-const mongoUri = 'mongodb+srv://admin:admin@cluster0.g8y1w.mongodb.net/project4?retryWrites=true&w=majority&appName=Cluster0';
+const mongoUri = 'mongodb+srv://admin:admin@cluster0.g8y1w.mongodb.net/project5?retryWrites=true&w=majority&appName=Cluster0';
 
 //connect to MongoDb
 mongoose.connect(mongoUri)
@@ -40,7 +40,7 @@ app.use(
         secret: "lalalalala",
         resave: false,
         saveUninitialized: false,
-        store: new MongoStore({mongoUrl: 'mongodb+srv://admin:admin@cluster0.g8y1w.mongodb.net/project4?retryWrites=true&w=majority&appName=Cluster0'}),
+        store: new MongoStore({mongoUrl: 'mongodb+srv://admin:admin@cluster0.g8y1w.mongodb.net/project5?retryWrites=true&w=majority&appName=Cluster0'}),
         cookie: {maxAge: 60*60*1000}
         })
 );

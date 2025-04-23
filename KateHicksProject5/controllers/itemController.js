@@ -39,7 +39,12 @@ exports.create = (req, res, next) => {
             }); //create a new item document
 
             item.save() //insert document into database
-                .then(item => res.redirect('/items'))
+                .then(item => {
+                    req.flash('success', 'Item successfully listed!');
+                    req.session.save(() => {
+                        res.redirect('/items');
+                    });
+                })
                 .catch(err => {
                     if (err.name === 'ValidationError') {
                         req.flash('error', err.message);

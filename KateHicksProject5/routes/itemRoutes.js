@@ -11,7 +11,7 @@ router.get('/', controller.index);
 router.get('/new', isLoggedIn, controller.new);
 
 // POST /items: create a new item
-router.post('/', isLoggedIn, validateItem, validateResult, controller.create);
+router.post('/', isLoggedIn, validateResult, validateItem, controller.create);
 
 // GET /items/:id: send details of item identified by id
 router.get('/:id', validateId, controller.show);
@@ -20,7 +20,7 @@ router.get('/:id', validateId, controller.show);
 router.get('/:id/edit', isLoggedIn, validateId, isOwner, controller.edit);
 
 // PUT /items/:id: update the item identified by id
-router.put('/:id', isLoggedIn, validateId, isOwner, validateItem, validateResult, controller.update);
+router.put('/:id', isLoggedIn, validateId, isOwner, validateResult, validateItem, controller.update);
 
 // DELETE /items/:id: delete the item identified by id
 router.delete('/:id', isLoggedIn, validateId, isOwner, controller.delete);

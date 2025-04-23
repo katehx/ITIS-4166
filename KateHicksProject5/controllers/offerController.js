@@ -1,4 +1,5 @@
 const Offer = require('../models/offer');
+
 const Item = require('../models/item');
 
 // POST /items/:id/offers - create a new offer
@@ -11,6 +12,7 @@ exports.create = (req, res, next) => {
         req.flash('error', 'You must be logged in to make an offer');
         return res.redirect('/users/login');
     }
+
 
     const { amount } = req.body;
 
@@ -40,7 +42,7 @@ exports.create = (req, res, next) => {
                     res.redirect(`/items/${itemId}`);
                 });
         })
-        .catch(err => next(err));
+         .catch(err => next(err));
 };
 
 
@@ -103,7 +105,7 @@ exports.accept = (req, res, next) => {
                     { item: itemId, _id: { $ne: offerId } },
                     { $set: { status: 'rejected' } }
                 ))
-                .then(() => {
+                .then(()=> {
                     req.flash('success', 'Offer accepted and item marked as sold.');
                     res.redirect(`/items/${itemId}/offers`);
                 });

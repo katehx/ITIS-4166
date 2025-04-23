@@ -20,7 +20,7 @@
             <% if (item.active) { %>
             <form class="offer-form" action="/items/<%= item._id %>/offers" method="POST">
                     <label for="amount">Make an Offer:</label>
-                    <input type="number" name="amount" step="5" min="0.01" required>
+                    <input type="number" name="amount" step="0.01" min="0.01" required>
                     <button type="submit">Make an Offer</button>
                 </form>
             <% } %>

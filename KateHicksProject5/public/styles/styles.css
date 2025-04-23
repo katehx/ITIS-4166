@@ -454,7 +454,10 @@ h2 {
 }
 
 .action-form {
-    display: inline;
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* offer page style */
@@ -508,4 +511,11 @@ h2 {
 
 .accept-offer:hover {
     background-color: var(--darkcyan);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap; 
+    align-items: center; 
 }

@@ -25,11 +25,7 @@ router.put('/:id', isLoggedIn, validateId, isOwner, controller.update);
 //DELETE /items/:id: delete the item identified by id
 router.delete('/:id', isLoggedIn, validateId, isOwner, controller.delete);
 
-
-
 const offerRoutes = require('./offerRoutes');
 router.use('/:id/offers', validateId, offerRoutes); // Nested: /items/:id/offers
-
-
 
 module.exports = router;

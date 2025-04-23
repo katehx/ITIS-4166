@@ -31,6 +31,14 @@ const itemSchema = new Schema({
     active: {
         type: Boolean,
         default: true
+    },
+    totalOffers: {
+        type: Number,
+        default: 0
+    },
+    highestOffer: {
+        type: Number,
+        default: 0
     }
 }, { timestamps: true }
 );

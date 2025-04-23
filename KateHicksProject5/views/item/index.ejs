@@ -19,7 +19,7 @@
                     </p>
                     <p class="price">$<%= item.price%>
                     </p>
-                    <p class="offers">0 offers</p>
+                    <p class="offers"><%= item.totalOffers || 0 %> offer<%= item.totalOffers === 1 ? '' : 's' %></p>
                 </a>
                 <% }); %>
                     <% } else { %>

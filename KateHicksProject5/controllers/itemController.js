@@ -1,8 +1,9 @@
 const model = require('../models/item');
 const { upload } = require('../middlewares/fileUpload');
+const Offer = require('../models/offer');
 
 exports.index = (req, res, next) => {
-    let query = {};
+    let query = { active: true };
 
     if (req.query.search) {
         const search = req.query.search;
@@ -59,7 +60,7 @@ exports.show = (req, res, next) => {
     model.findById(id).populate('seller', 'firstName lastName')
     .then(item => {
         if (item) {
-            return res.render('./item/show', {item});
+            res.render('./item/show', {item, user: req.session.user});
         } else {
             let err = new Error('Cannot find an item with id ' + id);
             err.status = 404;
@@ -137,9 +138,11 @@ exports.delete = (req, res, next) => {
     model.findByIdAndDelete(id, { userFindAndModify: false })
         .then(item => {
             if (item) {
-                req.flash('success', 'Item deleted successfully');
-                req.session.save(() => {
-                    res.redirect('/items');
+                return Offer.deleteMany({ item: id }).then(() => {
+                    req.flash('success', 'Item and associated offers deleted successfully');
+                    req.session.save(() => {
+                        res.redirect('/items');
+                    });
                 });
             } else {
                 let err = new Error('Cannot find an item with id ' + id);
